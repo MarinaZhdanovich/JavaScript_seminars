@@ -16,10 +16,18 @@
 			// 4. Спросить у пользователя его имя
 			// 5. Вывести на экран, Добро пожаловать на сайт “Имя
 			// пользователя”
-			let userAge = prompt("Ваш возраст?");
-			alert(`Вам ${userAge} лет`);
-			let userName = prompt("Ваше имя?");
-			alert(`Добро пожаловать на сайт ${userName}`);
+			let userAge = +prompt("Ваш возраст?"); //Number заменяют на +
+			if (userAge < 0) {
+				console.log("Ввели неверное значение");
+			} else if (userAge === 1) {
+				console.log(`Возраст пользователя ${userAge} год`);
+			} else if (userAge >= 2 && userAge <= 4) {
+				console.log(`Возраст пользователя ${userAge} годa`);
+			} else {
+				console.log(`Вам ${userAge} лет`);
+			}
+			const userName = prompt("Ваше имя?");
+			console.log(`Добро пожаловать на сайт ${userName}`);
 			//       Задание 2
 			// Текст задания
 			// 1. Найти остаток от деления двух переменных
@@ -58,13 +66,20 @@
 			let bb = "3";
 			console.log(aa + bb); //Если хотя бы один из операндов является строкой, операция будет строковой конкатенацией.
 			// Остальные арифметические операторы (-, *, /) работают только с числами. Если операнды являются строками, JavaScript попытается привести их к числовому типу.
-			let number1 = Number(prompt("Введите первое число"));
-			let number2 = Number(prompt("Введите второе число"));
-			console.log(`Сумма чисел = ${number1 + number2}`);
-			console.log(`Разность чисел = ${number1 - number2}`);
-			console.log(`Произведение чисел = ${number1 * number2}`);
-			console.log(`Частное чисел = ${number1 / number2}`);
-			console.log(`Остаток от деления чисел = ${number1 % number2}`);
+			let number1 = +prompt("Введите первое число");
+			let number2 = +prompt("Введите второе число");
+			if (number1 === 0 || number2 === 0) {
+				console.log("Делить на ноль нельзя");
+			} else if (number1 === "" || number2 === "") {
+				console.log("Вы ничего не ввели");
+			} else {
+				console.log(`Сумма чисел = ${number1 + number2}`);
+				console.log(`Разность чисел = ${number1 - number2}`);
+				console.log(`Произведение чисел = ${number1 * number2}`);
+				console.log(`Частное чисел = ${number1 / number2}`);
+				console.log(`Остаток от деления чисел = ${number1 % number2}`);
+			}
+
 			//       Задание 4
 			// 1. Не запуская код, определите, что выведется в консоль:
 			// a. console.log(String(true)); функция String() приводит значение к строковому типу, результатом будет строка "true".
@@ -93,7 +108,7 @@
 			// a. Необходимо найти какое из двух чисел минимальное
 			// 4. Пользователь с клавиатуры вводит число, Проверьте, что данная
 			// переменная больше нуля и меньше 15.
-			let number = Number(prompt("Введите число"));
+			let number = +prompt("Введите число");
 			if (number > 5) {
 				console.log("Число больше 5");
 			} else if (number < 5) {
@@ -110,13 +125,23 @@
 				console.log("Переменные не равны");
 			}
 
-			let number_1 = Number(prompt("Введите первое число"));
-			let number_2 = Number(prompt("Введите второе число"));
+			// console.log((test11 === test12) ? "Переменные равны" : "Переменные не равны");
+
+			let number_1 = +prompt("Введите первое число");
+			let number_2 = +prompt("Введите второе число");
 			if (number_1 > number_2) {
 				console.log(`Минимальное число ${number_2}`);
 			} else {
 				console.log(`Минимальное число ${number_1}`);
 			}
+
+			// let min = number_1;
+			// if (number_1 > number_2) {
+			// 		min = number_2;
+			// }
+			// console.log(`Минимальное число ${min}`);
+
+			// console.log((number_1 > number_2) ? `Минимальное число ${number_2}` : `Минимальное число ${number_1}`);
 
 			let number777 = Number(prompt("Введите число"));
 			if (number777 > 0 && number < 15) {
