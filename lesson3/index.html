@@ -149,6 +149,20 @@
 				}
 			};
 			console.log(DayTime1("Марина"));
+
+			function ask(question, answer) {
+				let userAnswer;
+				while (true) {
+					userAnswer = prompt("Введите ответ: ");
+					if (userAnswer.toLowerCase() === answer) {
+						alert("Ответ правильный");
+						break;
+					} else {
+						alert("Ответ неправильный. Думайте");
+					}
+				}
+			}
+			ask("зимой и летом", "елка");
 		</script>
 	</body>
 </html>
