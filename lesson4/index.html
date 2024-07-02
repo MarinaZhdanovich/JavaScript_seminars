@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			//     Задание 1 (тайминг 20 минут)
+			// Текст задания
+			// 1. Создайте массив с элементами 1, 2, 3. Выведите на экран
+			// каждый из этих элементов.
+			// 2. Создайте массив с произвольными элементами.
+			// Выведите на экран количество элементов в этом
+			// массиве.
+			// 3. Создайте массив с элементами 'a', 'b', 'c'. Запишите вместо
+			// первого элемента число 1, вместо второго - 2, вместо
+			// третьего - 3.
+
+			// const array1 = [1, 2, 3];
+			// for (let i = 0; i < array1.length; i++) {
+			// 	const element = array1[i];
+			// 	console.log(element);
+			// }
+
+			// const array1 = [1, 2, 3];
+			// array1.forEach((element) => console.log(element));
+
+			// const array2 = [15, 1, 0, 7, 10, 14];
+			// console.log(array2.length);
+
+			// const array3 = ["a", "b", "c"];
+			// array3[0] = 1;
+			// array3[1] = 2;
+			// array3[2] = 3;
+			// console.log(array3);
+			const array3 = ["a", "b", "c"];
+			for (let i = 0; i < array3.length; i++) {
+				array3[i] = i + 1;
+				console.log(array3);
+			}
+
+			// Math.random() возвращает псевдослучайное число в диапазоне от 0 (включительно) до 1 (исключительно). Math.random() возвращает число с плавающей точкой
+
+			const getRandom = (min, max) => {
+				return Math.floor(Math.random() * (max - min + 1) + min); //в конце "+ min" говорит с какого числа начинаем генерировать (с 5 итд) по умолчанию с 0
+			};
+
+			const arraySize = getRandom(1, 10);
+			console.log(`Размер массива ${arraySize}`);
+			const array4 = [];
+
+			for (let i = 0; i < arraySize; i++) {
+				array4.push(getRandom(0, 100));
+				console.log(array4[i]);
+			}
+
+			function getArray(sizeArray) {
+				const array = [];
+				for (let i = 0; i < sizeArray; i++) {
+					array.push(Math.round(Math.random() * 100)); //даст случайное целое число от 0 до 100 включительно,а Math.floor(Math.random() * 100) - случайное целое число от 0 до 99 включительно.
+				}
+				console.log(array);
+			}
+
+			getArray(4);
+		</script>
+	</body>
+</html>
