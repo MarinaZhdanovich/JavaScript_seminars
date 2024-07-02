@@ -35,36 +35,219 @@
 			// array3[1] = 2;
 			// array3[2] = 3;
 			// console.log(array3);
-			const array3 = ["a", "b", "c"];
-			for (let i = 0; i < array3.length; i++) {
-				array3[i] = i + 1;
-				console.log(array3);
-			}
+			// const array3 = ["a", "b", "c"];
+			// for (let i = 0; i < array3.length; i++) {
+			// 	array3[i] = i + 1;
+			// 	console.log(array3);
+			// }
 
 			// Math.random() возвращает псевдослучайное число в диапазоне от 0 (включительно) до 1 (исключительно). Math.random() возвращает число с плавающей точкой
 
-			const getRandom = (min, max) => {
-				return Math.floor(Math.random() * (max - min + 1) + min); //в конце "+ min" говорит с какого числа начинаем генерировать (с 5 итд) по умолчанию с 0
-			};
+			// const getRandom = (min, max) => {
+			// 	return Math.floor(Math.random() * (max - min + 1) + min); //в конце "+ min" говорит с какого числа начинаем генерировать (с 5 итд) по умолчанию с 0
+			// };
 
-			const arraySize = getRandom(1, 10);
-			console.log(`Размер массива ${arraySize}`);
-			const array4 = [];
+			// const arraySize = getRandom(1, 10);
+			// console.log(`Размер массива ${arraySize}`);
+			// const array4 = [];
 
-			for (let i = 0; i < arraySize; i++) {
-				array4.push(getRandom(0, 100));
-				console.log(array4[i]);
-			}
+			// for (let i = 0; i < arraySize; i++) {
+			// 	array4.push(getRandom(0, 100));
+			// 	console.log(array4[i]);
+			// }
 
-			function getArray(sizeArray) {
-				const array = [];
-				for (let i = 0; i < sizeArray; i++) {
-					array.push(Math.round(Math.random() * 100)); //даст случайное целое число от 0 до 100 включительно,а Math.floor(Math.random() * 100) - случайное целое число от 0 до 99 включительно.
-				}
-				console.log(array);
-			}
+			// function getArray(sizeArray) {
+			// 	const array = [];
+			// 	for (let i = 0; i < sizeArray; i++) {
+			// 		array.push(Math.round(Math.random() * 100)); //даст случайное целое число от 0 до 100 включительно,а Math.floor(Math.random() * 100) - случайное целое число от 0 до 99 включительно.
+			// 	}
+			// 	console.log(array);
+			// }
 
-			getArray(4);
+			// getArray(4);
+
+			//       Задание 2 (тайминг 15 минут)
+			// 1. Создайте массив с элементами 1, 2 и 3. С помощью оператора ++
+			// увеличьте каждый элемент массива на единицу.
+			// 2. Узнайте длину следующего массива:
+			// const arr = [];
+			// arr[3] = 'a';
+			// arr[8] = 'b';  //arr.length будет = 9.//JavaScript расширяет массив до индекса 3, заполняя индексы 0, 1, 2 значениями undefined. Затем при установке arr[8] = 'b'; он расширяет массив до индекса 8, заполняя индексы 4, 5, 6 и 7 также undefined. массив становится разреженным
+			// 1. Пусть дан такой массив:
+			// const arr = [1, 2, 3];
+			// Добавьте ему в конец элементы 4 и 5.
+			// 1. Создайте произвольный массив из 5 элементов, Удалите из него два
+			// элемента. Проверьте, какое станет значение свойства length после
+			// этого.
+			// const array5 = [1, 2, 3];
+			// for (let i = 0; i < array5.length; i++) {
+			// 	array5[i]++;
+			// }
+			// console.log(array5);
+
+			// const arr = [1, 2, 3];
+			// arr.push(4, 5);
+			// console.log(arr);
+
+			// const arr1 = [1, 2, 3, 5, 10];
+			// arr1.pop();
+			// arr1.pop();
+			// console.log(arr1.length);
+
+			// const newArr1 = arr1.slice(0, 3);
+			// console.log(newArr1);
+
+			// 			Задание 3 (тайминг 25 минут)
+			// 1. С помощью цикла for выведите в консоль числа от 11 до 33.
+			// 2. С помощью цикла for выведите в консоль нечетные числа в
+			// промежутке от 1 до 99.
+			// 3. С помощью цикла for выведите в консоль числа от 100 до 0.
+			// 4. Дано число num с неким начальным значением. Умножайте его на 3
+			// столько раз, пока результат умножения не станет больше 1000.
+			// Какое число получится? Посчитайте количество итераций,
+			// необходимых для этого.
+
+			// const start = 11;
+			// const end = 33;
+
+			// for (let i = start; i <= end; i++) {
+			// 	console.log(i);
+			// }
+
+			// for (let i = 1; i <= 99; i++) {
+			// 	if (i % 2 === 1) {
+			// 		console.log(i);
+			// 	}
+			// }
+
+			// for (let i = -1; i <= 97; console.log((i += 2)));
+
+			// for (let i = 100; i >= 0; i--) {
+			// 	console.log(i);
+			// }
+
+			// let num = 5;
+			// let iterations = 0;
+
+			// for (let i = num; i <= 1000; iterations++) {
+			// 	console.log(i);
+			// 	i = i * 3; //i*=3
+			// }
+
+			// console.log(iterations);
+
+			// let num = 5;
+			// let iterations = 0;
+
+			// while (num <= 1000) {
+			// 	num *= 3;
+			// 	iterations++;
+			// }
+
+			// console.log(num);
+			// console.log(iterations);
+
+			// for (let i = 1; i <= 3; i++) {
+			// 	let row = "";
+			// 	for (let j = 1; j <= 3; j++) {
+			// 		row += `${i}${j} `;
+			// 	}
+			// 	console.log(row);
+			// }
+
+			// 			Задание 4 (тайминг 25 минут)
+			// 1. Дан массив const arr = [2, 5, 9, 15, 1, 4];
+			// Выведите в консоль те элементы массива, которые больше 3-х, но
+			// меньше 10.
+			// 1. Найдите сумму четных чисел от 2 до 100.
+			// 2. Дан массив const = [2, 5, 9, 3, 1, 4];
+			// Найдите сумму элементов этого массива.
+			// 1. С помощью цикла сформируйте строку '-1-2-3-4-5-6-7-8-9-'.
+			// 2. Дан массив с числами. const = [2, 5, 9, 0, 3, 1, 4]; Запустите цикл,
+			// который будет по очереди выводить элементы этого массива в
+			// консоль до тех пор, пока не встретится элемент со значением 0.
+			// После этого цикл должен завершить свою работу.
+
+			// const arr = [2, 5, 9, 15, 1, 4];
+			// for (let i = 0; i < arr.length; i++) {
+			// 	if (arr[i] > 3 && arr[i] < 10) {
+			// 		console.log(arr[i]);
+			// 	}
+			// }
+
+			// const filterArr = arr.filter((number) => number > 3 && number < 10);
+			// console.log(filterArr);
+			// let sum = 0;
+			// for (let i = 2; i <= 100; i += 2) {
+			// 	sum += i;
+			// }
+			// console.log(sum);
+
+			// const array = [2, 5, 9, 3, 1, 4];
+			// let sum = 0;
+			// for (let i = 0; i < array.length; i++) {
+			// 	sum += array[i];
+			// }
+			// console.log(sum);
+
+			// const sumNew = array.reduce((sum, number) => sum + number, 0);
+			// console.log(sumNew);
+			// let result = "-";
+			// for (let i = 1; i <= 9; i++) {
+			// 	result += i + "-";
+			// }
+
+			// console.log(result);
+
+			// const array = [2, 5, 9, 0, 3, 1, 4];
+			// for (let i = 0; i < array.length; i++) {
+			// 	if (array[i] === 0) {
+			// 		break;
+			// 	}
+			// 		console.log(array[i]);
+			// 	}
+			// }
+			// array.forEach((element) => {
+			// 	if (element === 0) {
+			// 		return;
+			// 	}
+			// 	console.log(element);
+			// });
+
+			// 			Задание 5 (тайминг 25 минут)
+			// 1. Пусть у нас дан массив состоящий из 10 элементов с
+			// произвольными числами. Давайте переберем его циклом и числа,
+			// которые делятся на 2, возведем в квадрат и выведем в консоль, а
+			// числа, которые делятся на 3, возведем в куб и выведем в консоль.
+			// 2. С помощью двух вложенных циклов выведите на экран следующую
+			// строку:
+			// 3. Дан массив const arr = [1, 2, 3, 2, 4, 3, 5, 6, 3, 2, 3];
+			// Подсчитайте количество цифр 3 в этом массиве.
+			// 1. Дан следующий массив:
+			// [1, 2, 3, 4, 5]
+			// С помощью метода splice преобразуйте массив в следующий:
+			// [1, 4, 5]
+
+			// const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+			// for (let i = 0; i < arr.length; i++) {
+			// 	if (arr[i] % 2 === 0) {
+			// 		console.log(arr[i] ** 2);
+			// 	} else if (arr[i] % 3 === 0) {
+			// 		console.log(arr[i] ** 3);
+			// 	}
+			// }
+
+			// const arr = [1, 2, 3, 2, 4, 3, 5, 6, 3, 2, 3];
+			// let cont = 0;
+			// for (let i = 0; i < arr.length; i++) {
+			// 	if (arr[i] === 3) {
+			// 		cont++;
+			// 	}
+			// }
+			// console.log(cont);
+			const arr = [1, 2, 3, 4, 5];
+			arr.splice(1, 2);
+			console.log(arr);
 		</script>
 	</body>
 </html>
