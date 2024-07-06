@@ -33,14 +33,30 @@
 				surname: "Zhdanovich",
 				age: 39,
 			};
-			console.log(userData.name + "-" + userData.surname + "-" + userData.age);
-			console.log(`${userData.name} - ${userData.surname} - ${userData.age}`);
 
-			userData.middleName = prompt("Введите отчество"); //добавление нового свойства middleName к объекту userData
-			console.log(userData);
+			// userData["love"] = "love"; // если ключ является переменной (const love = 'love') или есть пробелы между словами ['love on']
+			userData.love = "love;";
 
-			delete userData.surname;
-			console.log(userData);
+			// Добавление свойства с использованием точечной нотации
+			userData.love = "coding";
+
+			// Или с использованием квадратных скобок
+			userData["hobby"] = "reading";
+
+			console.log(Object.keys(userData)); // ["name", "surname", "age"]
+			console.log(Object.values(userData)); // ["Marina", "Zhdanovich", 39]
+
+			const newName = Object.values(userData).map((element) => element + 1); //Метод .map() предназначен для массивов, поэтому он вызывает ошибку при попытке использовать его на объекте.
+			console.log(newName); // ['Marina1', 'Zhdanovich1', 40]
+
+			// console.log(userData.name      + "-" + userData.surname + "-" + userData.age);
+			// console.log(`${userData.name} - ${userData.surname} - ${userData.age}`);
+
+			// userData.middleName = prompt("Введите отчество"); //добавление нового свойства middleName к объекту userData
+			// console.log(userData);
+
+			// delete userData.surname;
+			// console.log(userData);
 
 			//       Создать объект товара
 			// id
@@ -48,17 +64,17 @@
 			// описание
 			// цена (вывести в консоль, товар с 20% скидкой)
 
-			const product = {
-				id: 1,
-				name: "Ноутбук",
-				decription: "Для работы и игр",
-				sale: 0.2,
-				price: 1000, // предположим, что цена без скидки 1000
-				salePrice() {
-					return this.price * (1 - this.sale);
-				},
-			};
-			console.log(`Цена со скидкой ${product.salePrice()}`);
+			// const product = {
+			// 	id: 1,
+			// 	name: "Ноутбук",
+			// 	decription: "Для работы и игр",
+			// 	sale: 0.2,
+			// 	price: 1000, // предположим, что цена без скидки 1000
+			// 	salePrice() {
+			// 		return this.price * (1 - this.sale);
+			// 	},
+			// };
+			// console.log(`Цена со скидкой ${product.salePrice()}`);
 
 			// 			Задание 2 (тайминг 25 минут)
 			// 1. Даны два массива: первый с названиями дней недели, а второй - с
@@ -70,28 +86,115 @@
 			// 1. const obj = {x: 1, y: 2, z: 3};
 			// Переберите этот объект циклом и возведите каждый элемент
 			// этого объекта в квадрат.
-			const arr1 = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
-			const arr2 = [1, 2, 3, 4, 5, 6, 7];
+			// const arr1 = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
+			// const arr2 = [1, 2, 3, 4, 5, 6, 7];
 
-			const ArrayWeek = {};
+			// const arrayWeek = {};
 
-			for (let i = 0; i < arr1.length; i++) {
-				ArrayWeek[arr1[i]] = arr2[i]; //daysOfWeek['пн'] = 1
-			}
-			//Точечная нотация требует фиксированного имени свойства и не поддерживает вычисление значения ключа во время выполнения
-			console.log(ArrayWeek);
+			// if (arr1.length === 0 || arr2.length === 0) {
+			// 	console.log("В массиве нет элементов");
+			// }
+			// if (arr1.length === arr2.length) {
+			// 	for (let i = 0; i < arr1.length; i++) {
+			// 		arrayWeek[arr1[i]] = arr2[i]; //arrayWeek['пн'] = 1
+			// 	}
+			// 	console.log(arrayWeek);
+			// } else {
+			// 	console.log("В массиве не одинаковое количество элементов");
+			// }
 
-			const obj = {
-				x: 1,
-				y: 2,
-				z: 3,
+			// const obj = {
+			// 	x: 1,
+			// 	y: 2,
+			// 	z: 3,
+			// };
+
+			// for (const key in obj) {
+			// 	obj[key] = obj[key] ** 2;
+			// }
+
+			// console.log(obj);
+			// 			Задание 3 (тайминг 15 минут)
+			// const obj = {
+			// key1: {
+			// key1: 1,
+			// key2: 2,
+			// key3: 3,
+			// },
+			// key2: {
+			// key1: 4,
+			// key2: 5,
+			// key3: 6,
+			// },
+			// key3: {
+			// key1: 7,
+			// key2: 8,
+			// key3: 9,
+			// },
+			// }
+			// Найдите сумму элементов приведенного объекта.
+			const object = {
+				key1: {
+					key1: 1,
+					key2: 2,
+					key3: 3,
+				},
+				key2: {
+					key1: 4,
+					key2: 5,
+					key3: 6,
+				},
+				key3: {
+					key1: 7,
+					key2: 8,
+					key3: 9,
+				},
 			};
 
-			for (const key in obj) {
-				obj[key] = obj[key] ** 2;
-			}
+			// const res = Object.values(object)
+			// .map((element) => Object.values(element))
+			// .flat() //[1, 2, 3, 4, 5, 6, 7, 8, 9] // Объединяем массивы в один
+			// .reduce((res, num) => res + num, 0);
+			// console.log(res);
+			// 	[key1: 1,
+			// 	key2: 2,
+			// 	key3: 3,
+			// 	key1: 4,
+			// 	key2: 5,   //Object.values(object)  [{…}, {…}, {…}]
+			// 	key3: 6,
+			// 	key1: 7,
+			// 	key2: 8,
+			// 	key3: 9,]
 
-			console.log(obj);
+			// [1, 2, 3]
+			// [4, 5, 6]  //map((element) => Object.values(element)
+			// [7, 8, 9]
+
+			//[1, 2, 3, 4, 5, 6, 7, 8, 9] // Объединяем массивы в один flat();
+
+			// let sum = 0;
+
+			// // Перебираем верхний уровень ключей
+			// for (const outKey in object) {
+			// 	// Перебираем вложенные объекты
+			// 	for (const innerKey in object[outKey]) {
+			// 		// Добавляем значение к сумме
+			// 		sum += object[outKey][innerKey]; // значение object['key1']['key1'] равно 1
+			// 	}
+			// }
+
+			// console.log("Сумма всех элементов объекта:", sum); // Выводим сумму
+
+			// for (const key in object) {
+			// 	sum += Object.values(object[key]).reduce((a, b) => a + b);
+			// }
+
+			// console.log(
+			// 	Object.values(obj)
+			// 		.map((element) => Object.values(element))
+			// 		.map((element) => element.reduce((a, b) => a + b))
+			// 		.reduce((a, b) => a + b)
+			// );
 		</script>
 	</body>
 </html>
