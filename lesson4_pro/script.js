@@ -27,34 +27,52 @@
 // Кнопка отправить
 // Если выбран чай, необходимо вывести сообщение “Чай закончился”
 // Если выбран кофе, необходимо вывести сообщение “кофе закончился”
-const drink = document.querySelectorAll('[name="drink"]');
-const button = document.querySelector('button');
+// const drink = document.querySelectorAll('[name="drink"]');
+// const button = document.querySelector('button');
 
-button.addEventListener('click', (e) => {
-  e.preventDefault();
-  drink.forEach((button) => {
-    if(button.checked) {
-      if(button.id === 'cofee') {
-        const p = document.createElement('p');
-        p.textContent = 'кофе закончился';
-        button.insertAdjacentElement('afterend', p);
-      } else if (button.id === 'tea') {
-        const pa = document.createElement('p');
-        pa.textContent = 'Чай закончился';
-        button.insertAdjacentElement('afterend', pa);
-      }
-    }
-  })
-});
+// button.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   drink.forEach((button) => {
+//     if(button.checked) {
+//       if(button.id === 'cofee') {
+//         const p = document.createElement('p');
+//         p.textContent = 'кофе закончился';
+//         button.insertAdjacentElement('afterend', p);
+//       } else if (button.id === 'tea') {
+//         const pa = document.createElement('p');
+//         pa.textContent = 'Чай закончился';
+//         button.insertAdjacentElement('afterend', pa);
+//       }
+//     }
+//   })
+// });
 
 // Создать поле ввода (пароль)
 // Кнопка отправить
 // Если пользователь вводит текст “пароль” то поле ввода должно быть подсвечено зеленым цветом
 // Если пароль неверный, у поля ввода появляется красная обводка и текст “пароль неверный”
+// const button = document.querySelector('button');
+// const input = document.querySelector('input');
+// const form = document.querySelector('form');
 
+// button.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   if(input.value.toLowerCase() === 'пароль') {
+//     input.style.border = '1px solid green';
+//     form.submit();
+//   } else {
+//     input.style.border = '1px solid red';
+//     input.value = '';
+//     input.placeholder = 'пароль неверный'
+//   }
+// })
 
 
 // Создать поле ввода и под ним заголовок h1 с текстом “Заголовок”
 // При вводе текста в поле ввода необходимо чтобы текст внутри заголовка менятся на введенный в поле ввода
+const input = document.querySelector('input');
+const h = document.querySelector('h1');
 
-
+input.addEventListener('input', () =>{
+  h.textContent = input.value;
+})
