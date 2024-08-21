@@ -86,3 +86,91 @@ const capitalizeFirstLetter = (str) => {
 // word.charAt(0).toUpperCase() делает его заглавным: "H".
 // word.slice(1) возвращает оставшуюся часть строки начиная с индекса 1: "ello".
 // Сложение двух строк "H" + "ello" даёт результат "Hello".
+
+
+// Напишите функцию createCalculator, которая принимает начальное
+// значение и возвращает объект с двумя методами: add и subtract.
+// Метод add должен увеличивать значение на переданное число, а
+// метод subtract должен уменьшать значение на переданное число.
+// Значение должно быть доступно только через методы объекта, а не
+// напрямую.
+
+function createCalculator(initialValue) {
+  let value = initialValue;
+
+  return {
+    add: function (num) {
+      value += num;
+    },
+    subtract: function (num) {
+      value -= num;
+    },
+    getValue: function () {
+      return value;
+    }
+  }
+}
+
+const calculator = createCalculator(10);
+calculator.add(5) //15
+calculator.subtract(2) //13
+console.log(calculator.getValue());
+
+
+
+
+// Напишите функцию createGreeting, которая принимает имя
+// пользователя и возвращает функцию, которая будет выводить
+// приветствие с использованием этого имени.
+// // Пример использования:
+// const greeting = createGreeting('John');
+// greeting(); // Ожидаемый результат: "Hello, John!"
+function createGreeting(user) {
+  return function () {
+    console.log(`Hello ${user}`);
+  }
+}
+
+const greeting = createGreeting('John');
+greeting();
+
+// Задача: Напишите функцию createPasswordChecker, которая
+// принимает допустимую длину пароля в качестве аргумента и
+// возвращает функцию для проверки введенного пароля.
+// Возвращаемая функция должна принимать пароль и возвращать
+// true, если его длина соответствует допустимой, и false в противном
+// случае.
+// // Пример использования:
+// const isPasswordValid = createPasswordChecker(8);
+// console.log(isPasswordValid('password')); // Ожидаемый результат:
+// false
+// console.log(isPasswordValid('secret')); // Ожидаемый результат: true
+function createPasswordChecker(maxLength) {
+  return function (password) {
+    return password.length <= maxLength;
+  }
+}
+
+const isPasswordValid = createPasswordChecker(8);
+console.log(isPasswordValid('newpassword')); // Ожидаемый результат:false
+console.log(isPasswordValid('secret')); // Ожидаемый результат: true
+
+// Напишите рекурсивную функцию sumDigits, которая принимает
+// положительное целое число в качестве аргумента и возвращает
+// сумму его цифр.
+// // Пример использования:
+// console.log(sumDigits(123)); // Ожидаемый результат: 6 (1 + 2 + 3)
+// console.log(sumDigits(456789)); // Ожидаемый результат: 39 (4 + 5 + 6
+// + 7 + 8 + 9)
+
+function sumDigits(num) {
+  if (num < 10) {
+    return num
+  }
+  return num % 10 + sumDigits(Math.floor(num / 10));
+}
+
+
+
+console.log(sumDigits(123)); // Ожидаемый результат: 6 (1 + 2 + 3)
+console.log(sumDigits(456789)); // Ожидаемый результат: 39 (4 + 5 + 6 + 7 + 8 + 9)
