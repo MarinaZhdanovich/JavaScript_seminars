@@ -12,9 +12,9 @@
 // Person.changeName("Mike");
 
 const Person = {
-  name: "Marina",
-  age: 35,
-  gender: "female",
+  name: " ",
+  age: 0,
+  gender: " ",
 
   introduce: function () {
     console.log(`My name is ${this.name}. I'm  ${this.age} years old and I identify as ${this.gender}.`);
@@ -24,9 +24,9 @@ const Person = {
   }
 }
 
-console.log(Person.name);
-console.log(Person.age);
-console.log(Person.gender);
+Person.name = "John";
+Person.age = 25;
+Person.gender = "male";
 Person.introduce()
 Person.changeName('Mike')
 Person.introduce()
@@ -42,7 +42,7 @@ Person.introduce()
 // Dog.eat(); // Вывод: Rex is eating.
 
 const Animal = {
-  name: 'Miami',
+  name: ' ',
   eat() {
     console.log(`${this.name} is eating`);
   }
@@ -55,7 +55,7 @@ const Dog = {
   }
 }
 
-Dog.eat = Animal.eat; //присваиваем метод одного объекта другому объекту.
+Dog.eat = Animal.eat; //присваиваем метод одного объекта другому объекту, одалживание
 Dog.eat();
 
 Animal.eat.call(Dog); //call позволяет вызвать метод eat с объектом Dog в качестве контекста this.
@@ -74,5 +74,90 @@ dogEat();  //метод eat связан с объектом Dog, и тепер�
 // console.log(calculator.add.call(null, 5, 3)); // Вывод: 8
 // console.log(calculator.subtract.apply(null, [5, 3])); // Вывод: 2
 
+const Calculator = {
+  add(a, b) {
+    return a + b;
+  },
+  subtract(a, b) {
+    return a - b;
+  },
+  multiply(a, b) {
+    return a * b;
+  }
+}
 
-//Когда вы используете метод apply, первым аргументом вы передаете значение, которое будет использоваться в качестве контекста this внутри вызываемой функции. Обычно это объект, к которому относится метод. Однако, если вам не нужно привязывать функцию к какому-то конкретному объекту, вы можете передать null или undefined.
+console.log(Calculator.add.call(null, 5, 3)); // Вывод: 8
+console.log(Calculator.subtract.apply(null, [5, 3])); // Вывод: 2
+
+
+// В обоих случаях (call и apply), значение this не играет роли, потому что методы add, subtract и multiply не используют this внутри себя. Поэтому передаем null. Это стандартная практика, когда this не важен для функции.
+
+
+// Создайте класс Person, который имеет свойства name и age, а также
+// метод introduce(), который выводит сообщение с представлением
+// имени и возраста персоны.
+// const person = new Person("John", 25);
+// person.introduce(); // Вывод: My name is John and I'm 25 years old.
+
+class Persona {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.name}. I'm  ${this.age} years old.`);
+  }
+}
+
+// constructor(name, age): Это специальный метод, который вызывается при создании нового объекта с помощью new. Он инициализирует свойства name и age объекта.
+// this.name и this.age: Здесь this ссылается на текущий экземпляр класса Person, позволяя вам сохранять переданные значения в свойства объекта.
+
+const person = new Persona("John", 25);
+person.introduce();
+
+// Создайте класс BankAccount, который представляет банковский счет.
+// У него должны быть свойства accountNumber (номер счета) и balance
+// (баланс), а также методы deposit(amount) для пополнения счета и
+// withdraw(amount) для снятия денег со счета. Класс должен иметь
+// также статическое свойство bankName, которое содержит название
+// банка.
+// const account1 = new BankAccount("1234567890", 1000);
+// account1.deposit(500); // Вывод: Deposited 500 into account
+// 1234567890. New balance: 1500
+// account1.withdraw(200); // Вывод: Withdrawn 200 from account
+// 1234567890. New balance: 1300
+// account1.withdraw(1500); // Вывод: Insufficient funds in account
+// 1234567890
+
+class BankAccount {
+
+  static bankName = "Global Bank"; //Используется для хранения названия банка, к которому относятся все счета. Это свойство принадлежит самому классу, а не конкретным экземплярам, поэтому оно определяется с помощью ключевого слова static.
+
+  constructor(accountNumber, balance = 0) {
+    this.accountNumber = accountNumber;
+    this.balance = balance;
+  }
+
+  deposit(amount) {
+    this.balance += amount;
+    console.log(`${amount} пополнено номер счета ${this.accountNumber} теперь на счету ${this.balance}`);
+  }
+  withdraw(amount) {
+    if (this.balance >= amount) {
+      this.balance -= amount;
+      console.log(`${amount} снятие номер счета ${this.accountNumber} теперь на счету ${this.balance}`);
+    } else {
+      console.log('Нет денег');
+    }
+  }
+
+}
+
+const account1 = new BankAccount("1234567890", 1000);
+account1.deposit(500); // Вывод: Deposited 500 into account 1234567890. New balance: 1500
+account1.withdraw(200); // Вывод: Withdrawn 200 from account 1234567890. New balance: 1300
+account1.withdraw(1500); // Вывод: Insufficient funds in account
+1234567890
+
+
