@@ -10,7 +10,7 @@ function getPrototypeChain(obj) {
   let currentObj = obj;
   while (currentObj !== null) {
     prototypeChain.push(currentObj);
-    currentObj = Object.getPrototypeOf(currentObj);
+    currentObj = Object.getPrototypeOf(currentObj); //текущий объект добавляется в массив prototypeChain. Затем переменная currentObj обновляется и становится равной прототипу текущего объекта. 
   }
 
   return prototypeChain;
@@ -129,7 +129,7 @@ class ShoppingCart {
   }
   addItem(product, quantity = 1) {
     this.totalCost += product.price * quantity
-    this.items.push({ product, quantity });
+    this.items.push({ product, quantity });   // { product: { name: 'Футболка', price: 1000 }, quantity: 2 },{ product: { name: 'Джинсы', price: 2000 }, quantity: 1 }
   }
   getCurrentCost() {
     return this.totalCost;
