@@ -80,6 +80,7 @@ function loadData(url) {
 
 loadData('');
 
+// переписанный для fetch
 fetch()
   .then((result) => {
     if (result.ok) {
@@ -100,19 +101,57 @@ fetch("")
 
 
 
-// Задание 3(тайминг 35 минут)
-// Напишите функцию getData, которая делает асинхронный запрос к
-// API и возвращает данные в виде объекта.
-// Внутри функции происходит асинхронный запрос к API с помощью
-// функции fetch.Затем, с использованием оператора await, ожидается
-// ответ от сервера и его парсинг в формате JSON с помощью метода
-// response.json().Полученные данные возвращаются из функции.
-// В случае возникновения ошибки при выполнении асинхронных
-// операций, используется конструкция try/catch для обработки и
-// отображения ошибки.
-// В функции main вызывается функция getData с использованием
-// await, чтобы получить данные асинхронно. Полученные данные
-// выводятся в консоль. Если происходит ошибка, она ловится и
-// выводится сообщение об ошибке. Функция main также объявлена как
-// асинхронная с использованием ключевого слова async. В конце
-// вызывается функция main для запуска процесса получения данных.
+
+
+const userList = document.querySelector('.users-list');
+const renderUserList = (users) => {
+  userList.innerHTML = "";
+  users.forEach(user => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+    <div>
+      <h2>${user.name}</h2>
+      <p>${user.email}</p>
+    </div>
+    `
+    userList.append(listItem);
+  })
+}
+
+
+
+const sortUsersByName = (users) => {
+  const sortedUsers = users.sort((a, b) => {
+    const nameA = a.name.toLowerCase();
+    const nameB = b.name.toLowerCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  renderUserList(sortedUsers);
+};
+
+fetch("")
+  .then((result) => result.json())
+  .then(data => {
+    renderUserList(data);
+    const sortEl = document.querySelector('.sort');
+    sortEl.addEventListener("click", function (e) {
+      sortUsersByName(data)
+    })
+  })
+  .catch((err) => {
+    console.error('Много ошибок, решай вопросы')
+  });
+
+
+fetch("")
+
+
+
+
