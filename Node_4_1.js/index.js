@@ -1,4 +1,6 @@
 const express = require('express');
+const { checkBody, checkParams } = require('./validation/validator');
+const { idScheme, articleScheme } = require('./validation/scheme');
 
 const app = express();
 
@@ -11,7 +13,7 @@ app.get('/articles', (req, res) => {
   res.send({ articles });
 });
 
-app.post('/articles', (req, res) => {
+app.post('/articles', checkBody(articleScheme), (req, res) => {
   uniqueId += 1;
 
   articles.push({
@@ -23,7 +25,7 @@ app.post('/articles', (req, res) => {
   })
 });
 
-app.get('/articles/:id', (req, res) => {
+app.get('/articles/:id', checkParams(idScheme), (req, res) => {  //checkParams(idScheme) промежуточный обработчик
   const article = articles.find((article) => article.id === Number(req.params.id));
   if (article) {
     res.send({ article });
@@ -33,8 +35,8 @@ app.get('/articles/:id', (req, res) => {
   }
 });
 
-
-app.put('/articles/:id', (req, res) => {
+// очередность checkParams затем checkBody
+app.put('/articles/:id', checkParams(idScheme), checkBody(articleScheme), (req, res) => {
   const article = articles.find((article) => article.id === Number(req.params.id));
 
   if (article) {
@@ -47,7 +49,7 @@ app.put('/articles/:id', (req, res) => {
   }
 });
 
-app.delete('/articles/:id', (req, res) => {
+app.delete('/articles/:id', checkParams(idScheme), (req, res) => {
   const article = articles.find((article) => article.id === Number(req.params.id));
   if (article) {
     const articleIndex = articles.indexOf(article);
@@ -58,6 +60,12 @@ app.delete('/articles/:id', (req, res) => {
     res.status(404);
     res.send({ article: null })
   }
+});
+
+app.use((req, res) => {
+  res.status(404).send({
+    message: 'URL not found!'
+  })
 });
 
 
