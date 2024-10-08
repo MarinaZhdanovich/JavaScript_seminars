@@ -1,0 +1,33 @@
+<!-- Работа с BOM
+1. Определение текущего размера окна браузера:
+Напишите функцию, которая будет выводить текущую
+ширину и высоту окна браузера при его изменении.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<section class="task">
+			<h1>Определение текущего размера окна браузера</h1>
+			<p>Ширина окна: <span class="window-size" id="width"></span> px</p>
+			<p>Высота окна: <span class="window-size" id="height"></span> px</p>
+		</section>
+		<script>
+			const updateWindowSize = () => {
+				const widthEl = window.innerWidth;
+				const heightEl = window.innerHeight;
+
+				const windowSizeElement = document.querySelectorAll(".window-size");
+				width.textContent = widthEl;
+				height.textContent = heightEl;
+			};
+
+			window.addEventListener("load", updateWindowSize);
+			window.addEventListener("resize", updateWindowSize);
+		</script>
+	</body>
+</html>
