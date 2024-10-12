@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<ul id="taskList">
+			<li>Задача1 <button class="delete-button">Удалить</button><button class="clone-button">Клонировать</button></li>
+			<li>Задача2 <button class="delete-button">Удалить</button><button class="clone-button">Клонировать</button></li>
+			<li>Задача3 <button class="delete-button">Удалить</button><button class="clone-button">Клонировать</button></li>
+		</ul>
+
+		<button class="clear">Вернуть все как было</button>
+
+		<script>
+			const taskList = document.querySelector("#taskList");
+			const clearEl = document.querySelector(".clear");
+
+			taskList.addEventListener("click", (event) => {
+				if (event.target.classList.contains("delete-button")) {
+					const taskItem = event.target.closest("li");
+					taskItem.remove();
+					localStorage.setItem("tasklist", taskList.innerHTML);
+				}
+
+				if (event.target.classList.contains("clone-button")) {
+					const taskItem = event.target.closest("li");
+					const clonedTaskItem = taskItem.cloneNode(true);
+					taskItem.after(clonedTaskItem);
+					localStorage.setItem("tasklist", taskList.innerHTML);
+				}
+			});
+
+			if (localStorage.getItem("tasklist")) {
+				taskList.innerHTML = localStorage.getItem("tasklist");
+			}
+
+			clearEl.addEventListener("click", function () {
+				localStorage.clear();
+				const initialTasks = `
+                <li>Задача1 <button class="delete-button">Удалить</button><button class="clone-button">Клонировать</button></li>
+                <li>Задача2 <button class="delete-button">Удалить</button><button class="clone-button">Клонировать</button></li>
+                <li>Задача3 <button class="delete-button">Удалить</button><button class="clone-button">Клонировать</button></li>
+            `;
+				localStorage.setItem("tasklist", initialTasks);
+				taskList.innerHTML = initialTasks; // Восстанавливаем стартовые задачи
+			});
+		</script>
+	</body>
+</html>
