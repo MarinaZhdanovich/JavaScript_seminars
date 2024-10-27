@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Информация о случайных пользователях</h1>
+		<label for="sort-select">Сортировка:</label>
+		<select id="sort-select">
+			<option value="name">По имени</option>
+			<option value="age">По возрасту</option>
+		</select>
+		<div id="user-list"></div>
+		<script>
+			// Получаем элементы, к которым будем добавлять пользователей и сортировку
+			const userListElement = document.querySelector("#user-list");
+			const sortSelect = document.querySelector("#sort-select");
+
+			// Отправляем запрос на внешний API, который возвращает случайных пользователей
+			fetch("https://randomuser.me/api/?results=5") // Параметр results=5 запрашивает 5 пользователей
+				.then((response) => response.json()) // Преобразуем ответ в формат JSON
+				.then((data) => {
+					let users = data.results; // Сохраняем массив пользователей, который пришел с сервера
+
+					// Отображаем список пользователей на странице
+					renderUserList(users);
+
+					// Добавляем обработчик события для изменения сортировки
+					sortSelect.addEventListener("change", () => {
+						const selectedOption = sortSelect.value; // Узнаем, по какому критерию нужно сортировать
+						users = sortUsers(users, selectedOption); // Сортируем пользователей по выбранному критерию
+						renderUserList(users); // Отображаем отсортированный список
+					});
+				})
+				.catch((error) => console.log(error)); // Если запрос не удался, выводим ошибку в консоль
+
+			// Функция для отображения пользователей
+			function renderUserList(users) {
+				userListElement.innerHTML = ""; // Очищаем предыдущий список пользователей
+				users.forEach((user) => {
+					const userElement = createUserElement(user); // Создаем элемент для пользователя
+					userListElement.appendChild(userElement); // Добавляем этот элемент в список
+				});
+			}
+
+			// Функция для создания HTML элемента одного пользователя
+			function createUserElement(user) {
+				const userContainer = document.createElement("div"); // Создаем контейнер для пользователя
+				userContainer.classList.add("user");
+
+				// Создаем элемент для отображения имени пользователя
+				const userName = document.createElement("p");
+				userName.textContent = `Name: ${user.name.first} ${user.name.last}`; // Имя и фамилия пользователя
+				userContainer.appendChild(userName); // Добавляем элемент с именем в контейнер
+
+				// Создаем элемент для отображения возраста пользователя
+				const userAge = document.createElement("p");
+				userAge.textContent = `Age: ${user.dob.age}`; // Возраст пользователя
+				userContainer.appendChild(userAge); // Добавляем элемент с возрастом в контейнер
+
+				return userContainer; // Возвращаем готовый контейнер пользователя
+			}
+
+			// Функция для сортировки пользователей по имени или возрасту
+			function sortUsers(users, sortBy) {
+				return users.sort((a, b) => {
+					if (sortBy === "name") {
+						return a.name.first.localeCompare(b.name.first); // Сравниваем имена по алфавиту
+					} else if (sortBy === "age") {
+						return a.dob.age - b.dob.age;
+					}
+				});
+			}
+		</script>
+	</body>
+</html>
