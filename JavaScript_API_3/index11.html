@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<form name="superForm">
+			title: <input name="title" value="test product" />
+			<br />
+			price: <input name="price" type="number" value="13.5" />
+			<br />
+			description: <input name="description" value="Lorem ipsum set" />
+			<br />
+			category: <input name="category" value="electronic" />
+			<input type="submit" />
+		</form>
+		<script>
+			"use strict";
+			const form = document.forms.superForm;
+
+			// Обработка отправки формы
+			form.onsubmit = async (e) => {
+				e.preventDefault(); // Отключаем стандартное поведение формы (перезагрузку страницы)
+
+				let response = await fetch("https://fakestoreapi.com/products", {
+					method: "POST", // Метод отправки - POST (создание нового ресурса)
+					body: new FormData(form), // Данные формы отправляются в формате FormData
+				});
+
+				let result = await response.json(); // Ожидаем ответ сервера и преобразуем его в JSON
+				console.log(result); // Выводим результат в консоль
+			};
+
+			(async () => {
+				let response = await fetch(
+					"https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits?per_page=100"
+				);
+				const reader = response.body.getReader(); // Получаем объект для чтения данных по частям
+
+				let receivedLength = 0; // Переменная для отслеживания длины полученных данных
+				let chunks = []; // Массив для хранения полученных фрагментов данных
+
+				while (true) {
+					const { done, value } = await reader.read(); // Читаем данные по частям
+
+					if (done) break; // Если чтение завершено, выходим из цикла
+
+					chunks.push(value); // Сохраняем прочитанную часть данных
+					receivedLength += value.length; // Увеличиваем количество полученных байтов
+
+					console.log(`Получено ${receivedLength} байт`); // Выводим в консоль сколько байт получено
+				}
+
+				// Собираем все фрагменты данных в один Uint8Array
+				let chunksAll = new Uint8Array(receivedLength);
+				let position = 0;
+				for (let chunk of chunks) {
+					chunksAll.set(chunk, position); // Заполняем массив данными
+					position += chunk.length; // Увеличиваем позицию для следующего фрагмента
+				}
+
+				// Декодируем полученные байты в текст
+				let result = new TextDecoder("utf-8").decode(chunksAll);
+
+				// Преобразуем полученный текст в JSON
+				let commits = JSON.parse(result);
+				console.log(commits); // Выводим полученные данные (коммиты) в консоль
+			})();
+		</script>
+	</body>
+</html>
